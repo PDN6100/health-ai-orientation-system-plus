@@ -1,0 +1,409 @@
+/* ==============================
+    Global Reset
+   ============================== */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ==============================
+    Root Variables
+   ============================== */
+:root {
+    /* Theme Colors */
+    --background: 195 100% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary and Secondary Colors */
+    --primary: 189 100% 42%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 189 60% 95%;
+    --secondary-foreground: 222 47% 11%;
+
+    /* Muted Colors */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Accent and Destructive Colors */
+    --accent: 189 95% 42%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border and Input Styles */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 189 100% 42%;
+
+    /* Other Variables */
+    --radius: 1rem;
+    --sidebar-width: 64px;
+    --sidebar-width-collapsed: 64px;
+    --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+}
+
+/* ==============================
+    Components
+   ============================== */
+
+/* Header and Navigation Bar */
+.history{
+    padding: 30px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nav-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.head{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+}
+
+.icon{
+    color: hsl(var(--primary));
+    background-color: hsl(var(--primary)/0.1);
+    padding: 9px;
+    border-radius: 50%;
+    width: 47px;
+    height: 47px;
+}
+
+/* Control Buttons */
+.control{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    width: 15%;
+}
+
+.control .MuiToggleButton-root {
+    background-color: rgb(255, 255, 255); 
+    border: 2px solid hsl(var(--muted)) !important; 
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 12px;
+}
+
+.control .MuiToggleButton-root.Mui-selected {
+    background-color: hsl(var(--primary) / 0.1);
+}
+
+.control .MuiToggleButton-root:hover,
+.control .MuiToggleButton-root.Mui-selected:hover {
+    background-color: hsl(var(--primary)); 
+}
+
+/* Input and Search Bar */
+.search .MuiOutlinedInput-root {
+    border-radius: 20px; 
+    background-color: hsl(var(--primary) / 0.1) !important; 
+    width: 300px;
+    height: 50px !important;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+/* ===============content part=========== */
+.content{
+    padding: 20px;
+    border-radius: 16px;
+    background-color: hsl(var(--card));
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    height: 100% !important;
+    
+}
+
+/* Menu and Buttons */
+.menu{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu .MuiButtonGroup-root{
+    all: unset !important;
+}
+
+.menu .MuiButton-root:first-child{ 
+    background-color:  hsl(var(--primary) / 0.1) !important;
+    border: 1px solid rgb(184, 184, 184) !important;
+    color: black !important;
+    height: 50px !important;
+    text-transform: capitalize !important;
+    border-radius: 20px 0 0 20px !important; 
+    z-index: 2 !important;
+}
+
+.menu .MuiButton-root:nth-child(2){ 
+    background-color:  hsl(var(--primary) / 0.1) !important;
+    border: 1px solid rgb(184, 184, 184) !important;
+    color: black !important;
+    height: 50px !important;
+    text-transform: capitalize !important;
+    border-radius: 0 20px 20px 0 !important; 
+    z-index: 2 !important;
+}
+
+.menu .MuiButton-root:hover{
+    background-color: hsl(var(--primary)) !important;
+    border-color: transparent !important;
+}
+
+/* List and Menu Items */
+.menu .MuiList-root{
+    background-color: white;
+}
+
+.menu .MuiButtonBase-root{
+    background-color: white !important;
+    border-radius: 12px !important;
+    padding: 9px !important;
+}
+
+.menu .MuiButtonBase-root:hover{
+    background-color: hsl(var(--primary)) !important;
+}
+
+.menu .MuiList-root{
+    margin-top: 6px !important;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    border-radius: 8px !important;
+    padding: 4px !important;
+}
+/* Bootstrap Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+.MuiBox-root{
+
+}
+.main-root{
+    
+}
+/* Écrans très petits (Téléphones) */
+@media (max-width: 576px) {
+    .history{
+        min-height: 91vh !important;
+        padding-left: 0 ;
+        padding-right: 0 !important;
+        width: 100% !important;
+    }
+    .menu{
+        flex-direction: column !important; /* Disposition en colonne */
+        
+        justify-content: center !important;
+    }
+    .nav-bar{
+        flex-direction: column !important; /* Disposition en colonne */
+        align-items: flex-start;
+    }
+    .history{
+        min-height: 140vh !important;
+    }
+    .grid-card{
+        width: 90% !important;
+    }
+
+    .css-1c54o3z-MuiGrid-root>.MuiGrid-item{
+        padding: 12px;
+    }
+    .table {
+        display: none; /* Cacher le tableau sur mobile */
+      }
+    .responsive-list {
+        display: block !important;
+      }
+    
+      .responsive-list .item {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 8px;
+        margin-bottom: 10px;
+      }
+    
+      .responsive-list .item div {
+        margin-bottom: 6px;
+      }
+    
+      .responsive-list .item .confidence-bar {
+        position: relative;
+        width: 100%;
+        height: 8px;
+        background-color: #e0f7fa;
+        border-radius: 60px;
+        overflow: hidden;
+      }
+    
+      .responsive-list .item .confidence-bar .fill {
+        height: 100%;
+        background-color: #00bcd4;
+        border-radius: 60px;
+      }
+      .nav-bar .MuiToggleButtonGroup-root{
+        margin-left: 30px !important;
+      }
+      .title{
+        align-items: center !important;
+        text-align: center;
+      }
+      .head{
+        flex-direction: column !important;;
+      }
+      .head .icon{
+        height: 67px !important;
+        width: 67px !important;
+      }
+}
+    
+
+
+/* Écrans plus petits (Tablettes portrait) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .history{
+        min-height: 91vh !important;
+        padding-left: 0 ;
+        padding-right: 0 !important;
+        width: 100% !important;
+    }
+    .menu{
+        flex-direction: column !important; /* Disposition en colonne */
+        
+        justify-content: center !important;
+    }
+    .nav-bar{
+        flex-direction: column !important; /* Disposition en colonne */
+        align-items: flex-start;
+    }
+    .history{
+        min-height: 200vh !important;
+    }
+    .grid-card{
+        width: 90% !important;
+    }
+    .css-1c54o3z-MuiGrid-root>.MuiGrid-item{
+        padding: 12px;
+    }
+}
+
+/* Écrans moyens (Ordinateurs portables) */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main-root {
+            height: 86vh !important;
+    }
+    .history{
+        min-height: 150vh !important;
+    }
+    .grid-card{
+        width: 45% !important;
+    }
+    .menu .MuiButton-root:first-child{ 
+        
+        font-size: 13px;
+    }
+    .search .MuiOutlinedInput-root{
+        width: 200px;
+    }
+    
+    .menu .MuiButton-root:nth-child(2){ 
+        width: 10px;
+    }
+    .grid-card .symptoms{
+        gap:10px !important;
+    }
+}
+
+/* Écrans grands (Ordinateurs de bureau) */
+@media (min-width: 1025px) {
+    .main-root {
+            height: 80vh;
+    }
+    .history{
+        height: 105vh !important;
+    }
+}
+
+
+
+/* ================
+    table 
+=================== */
+
+.table{
+    width: 100%;
+    border-radius: 12px;
+    background-color: white;
+    border:1px solid hsl(var(--border));
+}
+
+.table tr {
+    display: flex; 
+    justify-content: space-between;  
+    border-top: 1px solid hsl(var(--border));  
+    padding: 12px; 
+    align-items: center;  
+    width: 100%; 
+}
+thead tr:first-child{
+    border: none !important;
+}
+.table td,
+.table th {
+    flex: 1;  
+    padding: 0 8px; 
+    text-align: center !important; 
+    
+}
+
+.table th {
+    padding-left: 8px;  
+}
+
+.table th:last-child {
+    padding-right: 8px;  
+}
+
+tr:hover{
+    background-color:rgb(214, 213, 213);
+}
+/* ==== */
+.css-1c54o3z-MuiGrid-root>.MuiGrid-item{
+    padding-top: 35px;
+}
+/* ╔═══════════════════════════════════════╗
+   ║               𝑏𝑦 𝑅𝑜𝑜𝑚67              ║
+   ║   🚪 The room where magic happens 🚪 ║
+   ╚═══════════════════════════════════════╝ */

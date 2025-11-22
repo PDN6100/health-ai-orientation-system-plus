@@ -1,0 +1,132 @@
+/* ==============================
+   Global Reset and Root Variables
+   ============================== */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Theme Colors */
+    --background: 195 100% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary and Secondary Colors */
+    --primary: 189 100% 42%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 189 60% 95%;
+    --secondary-foreground: 222 47% 11%;
+
+    /* Muted Colors */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Accent and Destructive Colors */
+    --accent: 189 95% 42%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border and Input Styles */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 189 100% 42%;
+
+    /* Other Variables */
+    --radius: 1rem;
+    --sidebar-width: 64px;
+    --sidebar-width-collapsed: 64px;
+}
+
+/* ==============================
+   Landing Section Styles
+   ============================== */
+.landing {
+    /* Uncomment for gradient background */
+    /* background-color:hsl(var(--background)); */
+    background: linear-gradient(
+        135deg, 
+        #fefaff, #fefaff, #fbf9ff, 
+        #e5fcff, #d7fffc, #d6fff6, 
+        #d6fff6, #d9fff7, #e6fff9, 
+        #f7fffd, #feffff, #ffffff
+    );
+}
+
+/* ==============================
+   Title Section Styles
+   ============================== */
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ==============================
+   Content Section Styles
+   ============================== */
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* ==============================
+   Card Component Styles
+   ============================== */
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 18px;
+    align-items: flex-start;
+    background-color: hsl(var(--card));
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 8px 30px #0000000f;
+    color: hsl(var(--card-foreground));
+    height: 100%;
+}
+
+/* Card Icon Styling */
+.card .icon {
+    font-size: 40px;
+    color: hsl(var(--primary));
+}
+
+/* Card Title Styling */
+.card h4 {
+    font-size: 27px;
+    font-weight: 600;
+}
+
+/* Card Text Styling */
+.card p {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: hsl(var(--muted-foreground));
+}
+
+/* ==============================
+   Responsive Styles
+   ============================== */
+@media (max-width: 767px) {
+    .title h1 {
+        font-size: 44px !important; /* Adjust title size for small screens */
+    }
+    .MuiGrid-item {
+        padding-top: 30px !important; /* Modify grid padding for small screens */
+    }
+}
+
+/* ╔═══════════════════════════════════════╗
+   ║               𝑏𝑦 𝑅𝑜𝑜𝑚67              ║
+   ║   🚪 The room where magic happens 🚪 ║
+   ╚═══════════════════════════════════════╝ */
