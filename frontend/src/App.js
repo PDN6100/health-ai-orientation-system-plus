@@ -1,5 +1,4 @@
 import './App.css';
-import NavComp from './components/NavComp';
 import LandingPage from './components/LandingPage';
 import { useState } from 'react';
 import AdminDashboard from './components/AdminDashboard';

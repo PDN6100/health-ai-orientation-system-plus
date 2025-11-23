@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <g>
+    <rect x="34" y="40" width="50" height="30" rx="15" fill="#00b8d9">
+      <animate attributeName="x" values="34;38;34" dur="2.8s" repeatCount="indefinite"/>
+    </rect>
+    <text x="60" y="62" font-size="16" text-anchor="middle" fill="#fff">💊</text>
+  </g>
+</svg>

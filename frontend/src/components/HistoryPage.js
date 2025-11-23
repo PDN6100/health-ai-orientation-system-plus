@@ -17,6 +17,7 @@ import { LayoutList, LayoutGrid, Stethoscope, Search, Filter } from 'lucide-reac
 
 import { useState, useRef, useReducer, useEffect } from 'react';
 import axios from 'axios';
+const API_BASE = 'http://localhost:8080';
 
 import { historyData } from '../contexts/historyDataContext';
 
@@ -41,7 +42,7 @@ export default function HistoryPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/history?userId=${localStorage.getItem('userId')}`
+          `${API_BASE}/api/history?userId=${localStorage.getItem('userId')}`
         );
         setm(response.data); // Met à jour mydata
         dispatchHistory({ type: 'SET_DATA', payload: response.data }); // Met à jour l'état de data avec les nouvelles données

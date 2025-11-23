@@ -37,7 +37,7 @@ const ConfidenceLevel = ({ value }) => {
           />
         </Box>
         <Typography variant="subtitle1" color="#00b894">
-          {`${value}%`}
+          {`${isNaN(value) ? 0 : value}%`}
         </Typography>
       </Box>
     </Box>
@@ -112,7 +112,18 @@ export default function CardDisease(props) {
             <Typography variant="subtitle1" gutterBottom>
               Confidence Level
             </Typography>
-            <ConfidenceLevel value={Math.round(props.cardContent.Confidence * 100)} />
+            {/* Normalize confidence: if it's between 0-1 treat as fraction, if already 0-100 keep as-is */}
+            {(() => {
+              const raw = props.cardContent?.Confidence ?? props.cardContent?.confidence ?? 0;
+              let percent = 0;
+              const n = Number(raw);
+              if (isNaN(n)) percent = 0;
+              else if (n > 0 && n <= 1) percent = Math.round(n * 100);
+              else percent = Math.round(n);
+              if (percent < 0) percent = 0;
+              if (percent > 100) percent = 100;
+              return <ConfidenceLevel value={percent} />;
+            })()}
           </div>
           <div style={{ width: '100%' }}>
             <Accordion>

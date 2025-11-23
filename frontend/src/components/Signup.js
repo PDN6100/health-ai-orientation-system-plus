@@ -3,6 +3,7 @@ import '../styles/Signup.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from './utils';
+const API_BASE = 'http://localhost:8080';
 
 function Signup() {
   const [signupInfo, setSignupInfo] = useState({
@@ -24,7 +25,7 @@ function Signup() {
       return handleError('Nom, email et mot de passe requis');
     }
     try {
-      const url = 'http://localhost:8080/auth/signup';
+      const url = `${API_BASE}/auth/signup`;
       const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

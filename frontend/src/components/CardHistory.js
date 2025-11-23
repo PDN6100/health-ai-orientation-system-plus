@@ -58,17 +58,17 @@ export default function CardHistory({ layout }) {
             overflow: 'hidden',
           }}
         >
-          <div
-            style={{
-              width: `${Math.round(element.Confidence * 100)}%`,
-              height: '100%',
-              borderRadius: '60px',
-              backgroundColor: '#00bcd4',
-            }}
-          ></div>
+            <div
+              style={{
+                width: `${(function(){ const n=Number(element.Confidence||element.confidence||0); if(isNaN(n)) return 0; if(n>0 && n<=1) return Math.round(n*100); if(n>100) return 100; return Math.round(n); })()}%`,
+                height: '100%',
+                borderRadius: '60px',
+                backgroundColor: '#00bcd4',
+              }}
+            ></div>
         </div>
         <h5 style={{ margin: '0 0 0 5px', fontSize: '14px' }}>
-          {Math.round(element.Confidence * 100)}%
+          {(function(){ const n=Number(element.Confidence||element.confidence||0); if(isNaN(n)) return '0'; if(n>0 && n<=1) return Math.round(n*100); if(n>100) return 100; return Math.round(n); })()}%
         </h5>
       </td>
     </tr>
@@ -166,7 +166,7 @@ export default function CardHistory({ layout }) {
         >
           <div
             style={{
-              width: `${Math.round(element.Confidence * 100)}%`,
+              width: `${(function(){ const n=Number(element.Confidence||element.confidence||0); if(isNaN(n)) return 0; if(n>0 && n<=1) return Math.round(n*100); if(n>100) return 100; return Math.round(n); })()}%`,
               height: '100%',
               borderRadius: '60px',
               backgroundColor: '#00bcd4',
@@ -174,7 +174,7 @@ export default function CardHistory({ layout }) {
           ></div>
         </div>
         <h5 style={{ margin: '0 0 0 5px', fontSize: '14px' }}>
-          {Math.round(element.Confidence * 100)}%
+          {(function(){ const n=Number(element.Confidence||element.confidence||0); if(isNaN(n)) return '0'; if(n>0 && n<=1) return Math.round(n*100); if(n>100) return 100; return Math.round(n); })()}%
         </h5>
       </div>
     </div>
@@ -214,11 +214,11 @@ export default function CardHistory({ layout }) {
           <div
             className="fill"
             style={{
-              width: `${element.Confidence}%`,
+              width: `${(function(){ const n=Number(element.Confidence||element.confidence||0); if(isNaN(n)) return 0; if(n>0 && n<=1) return Math.round(n*100); if(n>100) return 100; return Math.round(n); })()}%`,
             }}
           ></div>
         </div>
-        <span>{element.Confidence}%</span>
+        <span>{(function(){ const n=Number(element.Confidence||element.confidence||0); if(isNaN(n)) return '0'; if(n>0 && n<=1) return Math.round(n*100); if(n>100) return 100; return Math.round(n); })()}%</span>
       </div>
     </div>
   ));

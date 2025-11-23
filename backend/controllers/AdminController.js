@@ -1,5 +1,7 @@
 const User = require("../Models/User");
 const Prediction = require("../Models/PredictModeldb");
+const fs = require('fs');
+const path = require('path');
 
 // CRUD pour les utilisateurs
 exports.getAllUsers = async (req, res) => {
@@ -110,5 +112,34 @@ exports.deletePrediction = async (req, res) => {
   } catch (err) {
     console.error("Erreur lors de la suppression de la prédiction :", err);
     res.status(500).json({ message: "Erreur serveur" });
+  }
+};
+
+// Get disease advice JSON from server file
+exports.getDiseaseAdvice = async (req, res) => {
+  try {
+    const filePath = path.join(__dirname, '..', 'data', 'diseaseAdvice.json');
+    if (!fs.existsSync(filePath)) return res.status(200).json({});
+    const raw = fs.readFileSync(filePath, 'utf8');
+    const data = JSON.parse(raw);
+    res.status(200).json(data);
+  } catch (err) {
+    console.error('Erreur lecture diseaseAdvice:', err);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+};
+
+// Save disease advice JSON to server file (overwrite)
+exports.saveDiseaseAdvice = async (req, res) => {
+  try {
+    const payload = req.body || {};
+    const fileDir = path.join(__dirname, '..', 'data');
+    if (!fs.existsSync(fileDir)) fs.mkdirSync(fileDir, { recursive: true });
+    const filePath = path.join(fileDir, 'diseaseAdvice.json');
+    fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), 'utf8');
+    res.status(200).json({ message: 'Fiches sauvegardées' });
+  } catch (err) {
+    console.error('Erreur sauvegarde diseaseAdvice:', err);
+    res.status(500).json({ message: 'Erreur serveur' });
   }
 };

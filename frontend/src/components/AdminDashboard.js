@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+const API_BASE = 'http://localhost:8080';
 import {
   Box,
   Typography,
@@ -25,6 +26,7 @@ import {
   CircularProgress,
   Alert,
 } from '@mui/material';
+import diseaseAdviceData from '../data/diseaseAdvice.json';
 import { Add, Edit, Delete, Dashboard, People, BarChart, Logout } from '@mui/icons-material';
 import {
   PieChart,
@@ -63,22 +65,72 @@ const AdminDashboard = () => {
   const [form, setForm] = useState({ name: '', email: '', role: 'user', password: '' });
   const [activeView, setActiveView] = useState('dashboard'); // État pour gérer la vue active
   const [selectedUser, setSelectedUser] = useState(null); // Utilisateur sélectionné pour afficher ses prédictions
+  const [diseaseAdvice, setDiseaseAdvice] = useState({});
+  const [openDiseaseModal, setOpenDiseaseModal] = useState(false);
+  const [editDiseaseKey, setEditDiseaseKey] = useState(null);
+  const [diseaseForm, setDiseaseForm] = useState({ overview: '', typicalSymptoms: [], prevention: [], whenToSeekCare: '', firstLineAdvice: '', fullDescription: '', practicalTips: [] });
 
   useEffect(() => {
     fetchAdminData();
+    loadDiseaseAdvice();
   }, []);
+
+  const loadDiseaseAdvice = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios
+        .get(`${API_BASE}/admin/diseaseAdvice`, { headers: { Authorization: `Bearer ${token}` } })
+        .then((res) => {
+          if (res.data && Object.keys(res.data).length > 0) {
+            setDiseaseAdvice(res.data);
+            localStorage.setItem('diseaseAdvice', JSON.stringify(res.data));
+            return;
+          }
+          // fallback to local or bundled
+          const local = localStorage.getItem('diseaseAdvice');
+          if (local) setDiseaseAdvice(JSON.parse(local));
+          else setDiseaseAdvice(diseaseAdviceData || {});
+        })
+        .catch((err) => {
+          console.warn('Server diseaseAdvice not available:', err.message || err);
+          const local = localStorage.getItem('diseaseAdvice');
+          if (local) setDiseaseAdvice(JSON.parse(local));
+          else setDiseaseAdvice(diseaseAdviceData || {});
+        });
+      return;
+    }
+    try {
+      const local = localStorage.getItem('diseaseAdvice');
+      if (local) {
+        setDiseaseAdvice(JSON.parse(local));
+      } else {
+        setDiseaseAdvice(diseaseAdviceData || {});
+      }
+    } catch (e) {
+      console.error('Erreur chargement diseaseAdvice:', e);
+      setDiseaseAdvice(diseaseAdviceData || {});
+    }
+  };
 
   const fetchAdminData = async () => {
     setLoading(true);
     setError(null);
     try {
-      const usersRes = await axios.get('http://localhost:8080/admin/users');
-      const predictionsRes = await axios.get('http://localhost:8080/admin/predictions');
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setError("Vous devez être connecté en tant qu'admin pour accéder à cette page.");
+        setLoading(false);
+        return;
+      }
+      const headers = { headers: { Authorization: `Bearer ${token}` } };
+      const usersRes = await axios.get(`${API_BASE}/admin/users`, headers);
+      const predictionsRes = await axios.get(`${API_BASE}/admin/predictions`, headers);
       setUsers(usersRes.data);
       setPredictions(predictionsRes.data);
     } catch (err) {
       console.error('Erreur lors du chargement des données :', err);
-      setError('Erreur lors du chargement des données.');
+      const msg = err.response && err.response.status === 403 ? "Accès refusé : droits administrateur requis." : 'Erreur lors du chargement des données.';
+      setError(msg);
     }
     setLoading(false);
   };
@@ -110,11 +162,11 @@ const AdminDashboard = () => {
       }
       if (editUser) {
         // Modifier un utilisateur
-        await axios.put(`http://localhost:8080/admin/users/${editUser._id}`, form);
+        await axios.put(`${API_BASE}/admin/users/${editUser._id}`, form);
         alert('Utilisateur modifié avec succès !');
       } else {
         // Ajouter un utilisateur
-        await axios.post('http://localhost:8080/admin/users', form);
+        await axios.post(`${API_BASE}/admin/users`, form);
         alert('Utilisateur ajouté avec succès !');
       }
       fetchAdminData();
@@ -128,7 +180,7 @@ const AdminDashboard = () => {
   const handleDeleteUser = async (id) => {
     if (window.confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {
       try {
-        await axios.delete(`http://localhost:8080/admin/users/${id}`);
+        await axios.delete(`${API_BASE}/admin/users/${id}`);
         alert('Utilisateur supprimé avec succès !');
         fetchAdminData();
       } catch (err) {
@@ -168,6 +220,91 @@ const AdminDashboard = () => {
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = '/login'; // Redirige vers la page de connexion
+  };
+
+  // Disease advice CRUD (local)
+  const handleOpenDiseaseEdit = (key = null) => {
+    if (key) {
+      const item = diseaseAdvice[key];
+      setEditDiseaseKey(key);
+      setDiseaseForm({
+        overview: item.overview || '',
+        typicalSymptoms: (item.typicalSymptoms || []).join('\n'),
+        prevention: (item.prevention || []).join('\n'),
+        whenToSeekCare: item.whenToSeekCare || '',
+        firstLineAdvice: item.firstLineAdvice || '',
+        fullDescription: item.fullDescription || '',
+        practicalTips: (item.practicalTips || []).join('\n'),
+      });
+    } else {
+      setEditDiseaseKey(null);
+      setDiseaseForm({ overview: '', typicalSymptoms: [], prevention: [], whenToSeekCare: '', firstLineAdvice: '', fullDescription: '', practicalTips: [] });
+    }
+    setOpenDiseaseModal(true);
+  };
+
+  const handleCloseDiseaseModal = () => {
+    setOpenDiseaseModal(false);
+    setEditDiseaseKey(null);
+  };
+
+  const handleDiseaseFormChange = (e) => {
+    setDiseaseForm({ ...diseaseForm, [e.target.name]: e.target.value });
+  };
+
+  const handleSaveDisease = () => {
+    const normalized = {
+      overview: diseaseForm.overview,
+      typicalSymptoms: diseaseForm.typicalSymptoms.split('\n').map((s) => s.trim()).filter(Boolean),
+      prevention: diseaseForm.prevention.split('\n').map((s) => s.trim()).filter(Boolean),
+      whenToSeekCare: diseaseForm.whenToSeekCare,
+      firstLineAdvice: diseaseForm.firstLineAdvice,
+      fullDescription: diseaseForm.fullDescription,
+      practicalTips: diseaseForm.practicalTips.split('\n').map((s) => s.trim()).filter(Boolean),
+    };
+    const copy = { ...diseaseAdvice };
+    if (editDiseaseKey) {
+      copy[editDiseaseKey] = normalized;
+    } else {
+      // Generate a safe key from overview first line
+      const key = 'New-' + Date.now();
+      copy[key] = normalized;
+    }
+    setDiseaseAdvice(copy);
+    localStorage.setItem('diseaseAdvice', JSON.stringify(copy, null, 2));
+    // try to save on server if token present
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios
+        .post(`${API_BASE}/admin/diseaseAdvice`, copy, { headers: { Authorization: `Bearer ${token}` } })
+        .then(() => {
+          // saved on server
+        })
+        .catch((err) => console.warn('Could not save diseaseAdvice to server:', err.message || err));
+    }
+    setOpenDiseaseModal(false);
+  };
+
+  const handleExportDiseaseJSON = () => {
+    const dataStr = JSON.stringify(diseaseAdvice, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'diseaseAdvice-export.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleSaveToServer = () => {
+      const token = localStorage.getItem('token');
+    if (!token) return alert('Vous devez être connecté en tant qu\'admin pour sauvegarder sur le serveur.');
+    axios
+      .post(`${API_BASE}/admin/diseaseAdvice`, diseaseAdvice, { headers: { Authorization: `Bearer ${token}` } })
+      .then(() => alert('Fiches sauvegardées sur le serveur'))
+      .catch((err) => alert('Échec sauvegarde serveur: ' + (err.message || err)));
   };
 
   // Afficher les prédictions d'un utilisateur
@@ -225,6 +362,12 @@ const AdminDashboard = () => {
             </ListItemIcon>
             <ListItemText primary="Statistiques" />
           </ListItem>
+          <ListItem button={true} onClick={() => setActiveView('diseases')}>
+            <ListItemIcon sx={{ color: '#fff' }}>
+              <Dashboard />
+            </ListItemIcon>
+            <ListItemText primary="Fiches maladies" />
+          </ListItem>
           <Divider sx={{ bgcolor: '#fff' }} />
           <ListItem button={true} onClick={handleLogout}>
             <ListItemIcon sx={{ color: '#fff' }}>
@@ -239,9 +382,24 @@ const AdminDashboard = () => {
       <Box sx={{ flexGrow: 1, p: 3 }}>
         <AppBar position="static" sx={{ bgcolor: '#1976d2', mb: 4 }}>
           <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Tableau de bord Administrateur
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <img
+                src="/assets/doctor.png"
+                alt="Dr. AI"
+                style={{ height: 40 }}
+                onError={(e) => {
+                  if (e && e.target) e.target.src = '/assets/doctor-illustration.svg';
+                }}
+              />
+              <Typography variant="h6" component="div" sx={{ fontWeight: 700 }}>
+                Tableau de bord Administrateur
+              </Typography>
+            </Box>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box>
+              <Button color="inherit" onClick={() => window.location.href = '/'}>Accueil</Button>
+              <Button color="inherit" onClick={handleLogout}>Déconnexion</Button>
+            </Box>
           </Toolbar>
         </AppBar>
 
@@ -365,6 +523,9 @@ const AdminDashboard = () => {
                             <IconButton color="error" onClick={() => handleDeleteUser(user._id)}>
                               <Delete />
                             </IconButton>
+                            <Button size="small" sx={{ ml: 1 }} onClick={() => handleViewUserDetails(user._id)}>
+                              Voir prédictions
+                            </Button>
                           </TableCell>
                         </TableRow>
                       ))}
@@ -430,6 +591,62 @@ const AdminDashboard = () => {
                 </Box>
               </Box>
             )}
+            {activeView === 'diseases' && (
+              <Box>
+                <Typography variant="h5" sx={{ mb: 2, color: '#1976d2' }}>
+                  Fiches maladies
+                </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                  <Box>
+                    <Button variant="contained" startIcon={<Add />} onClick={() => handleOpenDiseaseEdit()} sx={{ bgcolor: '#1976d2', mr: 2 }}>
+                      Ajouter une fiche
+                    </Button>
+                    <Button variant="outlined" onClick={handleExportDiseaseJSON} sx={{ mr: 2 }}>
+                      Exporter JSON
+                    </Button>
+                    <Button variant="contained" color="secondary" onClick={handleSaveToServer}>
+                      Sauvegarder serveur
+                    </Button>
+                  </Box>
+                </Box>
+                <TableContainer component={Paper}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>État</TableCell>
+                        <TableCell>Maladie</TableCell>
+                        <TableCell>Description</TableCell>
+                        <TableCell align="right">Actions</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {Object.keys(diseaseAdvice).map((key, idx) => (
+                        <TableRow key={key}>
+                          <TableCell>
+                            {/* choose an icon based on index as a simple heuristic; admin can replace assets */}
+                            <img
+                              src={idx % 3 === 0 ? '/assets/state-healthy.svg' : idx % 3 === 1 ? '/assets/state-warning.svg' : '/assets/state-critical.svg'}
+                              alt="state"
+                              className="state-icon"
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell>{key}</TableCell>
+                          <TableCell sx={{ maxWidth: 500, overflow: 'hidden', textOverflow: 'ellipsis' }}>{diseaseAdvice[key].overview}</TableCell>
+                          <TableCell align="right">
+                            <Button size="small" onClick={() => handleOpenDiseaseEdit(key)} startIcon={<Edit />}>
+                              Éditer
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Box>
+            )}
           </>
         )}
 
@@ -468,6 +685,86 @@ const AdminDashboard = () => {
                 {editUser ? 'Enregistrer' : 'Ajouter'}
               </Button>
               <Button variant="outlined" onClick={handleCloseModal}>
+                Annuler
+              </Button>
+            </Box>
+          </Box>
+        </Modal>
+        {/* Modal Fiche Maladie */}
+        <Modal open={openDiseaseModal} onClose={handleCloseDiseaseModal}>
+          <Box sx={{ ...styleModal, width: 700 }}>
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              {editDiseaseKey ? 'Modifier' : 'Ajouter'} une fiche maladie
+            </Typography>
+            <TextField
+              fullWidth
+              label="Présentation brève (overview)"
+              name="overview"
+              value={diseaseForm.overview}
+              onChange={handleDiseaseFormChange}
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              fullWidth
+              multiline
+              minRows={2}
+              label="Symptômes typiques (une par ligne)"
+              name="typicalSymptoms"
+              value={diseaseForm.typicalSymptoms}
+              onChange={handleDiseaseFormChange}
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              fullWidth
+              multiline
+              minRows={2}
+              label="Prévention (une par ligne)"
+              name="prevention"
+              value={diseaseForm.prevention}
+              onChange={handleDiseaseFormChange}
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              fullWidth
+              label="Quand consulter"
+              name="whenToSeekCare"
+              value={diseaseForm.whenToSeekCare}
+              onChange={handleDiseaseFormChange}
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              fullWidth
+              label="Conseils de 1ère ligne"
+              name="firstLineAdvice"
+              value={diseaseForm.firstLineAdvice}
+              onChange={handleDiseaseFormChange}
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              fullWidth
+              multiline
+              minRows={3}
+              label="Description complète"
+              name="fullDescription"
+              value={diseaseForm.fullDescription}
+              onChange={handleDiseaseFormChange}
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              fullWidth
+              multiline
+              minRows={2}
+              label="Conseils pratiques (une par ligne)"
+              name="practicalTips"
+              value={diseaseForm.practicalTips}
+              onChange={handleDiseaseFormChange}
+              sx={{ mb: 2 }}
+            />
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
+              <Button variant="contained" onClick={handleSaveDisease} sx={{ bgcolor: '#1976d2' }}>
+                Enregistrer
+              </Button>
+              <Button variant="outlined" onClick={handleCloseDiseaseModal}>
                 Annuler
               </Button>
             </Box>

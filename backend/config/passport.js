@@ -7,7 +7,7 @@ require('dotenv').config();
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://localhost:8080/auth/google/callback',
+    callbackURL: process.env.GOOGLE_CALLBACK_URL || 'http://localhost:8080/auth/google/callback',
     scope: ['profile', 'email'],  // Ajouter des scopes ici si nécessaire
 },
 (accessToken, refreshToken, profile, done) => {

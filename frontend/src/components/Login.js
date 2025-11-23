@@ -3,6 +3,7 @@ import '../styles/Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from './utils';
+const API_BASE = 'http://localhost:8080';
 
 function Login() {
   const [loginInfo, setLoginInfo] = useState({ email: '', password: '' });
@@ -19,7 +20,7 @@ function Login() {
     if (!email || !password) return handleError('Email and password are required');
 
     try {
-      const response = await fetch('http://localhost:8080/auth/login', {
+      const response = await fetch(`${API_BASE}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginInfo),
@@ -104,7 +105,7 @@ function Login() {
             <div className="or-divider">
               <span>OU</span>
             </div>
-            <a href="http://localhost:8080/auth/google" className="google-login-button">
+            <a href={`${API_BASE}/auth/google`} className="google-login-button">
               <img
                 src="https://www.gstatic.com/images/branding/product/1x/gsa_64dp.png"
                 alt="Google Logo"

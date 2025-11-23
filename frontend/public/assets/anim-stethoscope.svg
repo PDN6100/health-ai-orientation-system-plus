@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <g>
+    <path d="M30 40 C40 20, 80 20, 90 40" stroke="#6a8cff" stroke-width="6" fill="none">
+      <animate attributeName="stroke-width" values="4;8;4" dur="2.5s" repeatCount="indefinite"/>
+    </path>
+    <circle cx="60" cy="80" r="8" fill="#6a8cff">
+      <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

@@ -39,27 +39,28 @@ app.get("/ping", (req, res) => {
 });
 
 // Connexion à la base de données MongoDB
-mongoose.connect(process.env.MONGODB_URI)
+const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/health_ai';
+
+// Import des routes (pré-enregistrées même si Mongo non disponible)
+const AuthRouter = require("./Routes/AuthRouter");
+const predictrouter = require("./Routes/predictRoute");
+const contactRouter = require("./Routes/contact");
+const adminRoutes = require("./Routes/admin");
+
+// Routes API
+app.use("/auth", AuthRouter);            // Authentification
+app.use("/api/predict", predictrouter);  // Prédiction
+app.use("/api/history", predictrouter);  // Historique
+app.use('/api/contact', contactRouter); // Contact form
+app.use("/admin", adminRoutes);          // Admin
+
+mongoose.connect(mongoUri)
   .then(() => {
     console.log("✅ Connecté à MongoDB");
-
-    // Import des routes
-    const AuthRouter = require("./Routes/AuthRouter");
-    const predictrouter = require("./Routes/predictRoute");
-    const contactRouter = require("./Routes/contact");
-    const adminRoutes = require("./Routes/admin");
-
-    // Routes API
-    app.use("/auth", AuthRouter);            // Authentification
-    app.use("/api/predict", predictrouter);  // Prédiction
-    app.use("/api/history", predictrouter);  // Historique
-    app.use('/api/contact', contactRouter); // Contact form
-    app.use("/admin", adminRoutes);          // Admin
-
   })
   .catch((err) => {
     console.error("❌ Erreur de connexion MongoDB :", err);
-    process.exit(1); // Arrêter l'application si échec
+    console.warn(`Le serveur démarre mais certaines fonctionnalités (requérant la BDD) peuvent être limitées. Essayez d'indiquer MONGODB_URI dans votre .env ou démarrez MongoDB localement à ${mongoUri}`);
   });
 
 // Gestion d'erreurs globale

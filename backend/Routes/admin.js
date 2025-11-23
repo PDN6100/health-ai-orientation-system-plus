@@ -1,5 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const { requireAdmin } = require('../Middlewares/jwtAuth');
+
+// Apply admin check to all admin routes
+router.use(requireAdmin);
 const AdminController = require("../controllers/AdminController");
 
 // Routes pour les utilisateurs
@@ -13,5 +17,9 @@ router.get("/predictions", AdminController.getAllPredictions); // Lire toutes le
 router.post("/predictions", AdminController.createPrediction); // Créer une prédiction
 router.put("/predictions/:id", AdminController.updatePrediction); // Mettre à jour une prédiction
 router.delete("/predictions/:id", AdminController.deletePrediction); // Supprimer une prédiction
+
+// Routes pour gérer les fiches maladies (stockage fichier JSON côté serveur)
+router.get('/diseaseAdvice', AdminController.getDiseaseAdvice);
+router.post('/diseaseAdvice', AdminController.saveDiseaseAdvice);
 
 module.exports = router;

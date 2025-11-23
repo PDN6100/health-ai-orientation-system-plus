@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <g>
+    <rect x="20" y="30" width="80" height="60" rx="20" fill="#ffd166">
+      <animate attributeName="x" values="22;18;22" dur="3s" repeatCount="indefinite"/>
+    </rect>
+    <text x="60" y="72" font-size="20" text-anchor="middle" fill="#7f5539">🧠</text>
+  </g>
+</svg>

@@ -1,0 +1,111 @@
+{
+  "Hypertension": {
+    "overview": "Élévation chronique de la pression artérielle systolique et/ou diastolique; facteur majeur de risque cardiovasculaire.",
+    "typicalSymptoms": ["Souvent asymptomatique", "Maux de tête persistants (parfois)", "Fatigue"],
+    "prevention": ["Réduction de la consommation de sel", "Activité physique régulière (150 min/semaine)", "Perte de poids si surcharge pondérale"],
+    "whenToSeekCare": "Si mesures répétées >= 140/90 mmHg ou symptômes neurologiques nouveaux, consulter un médecin.",
+    "firstLineAdvice": "Mesurer la pression à domicile, tenir un carnet, amélioration hygiéno-diététique; médication selon avis médical et guidelines locales."
+    ,"fullDescription":"L'hypertension artérielle est une élévation chronique de la pression exercée par le sang sur la paroi des artères. Elle peut rester asymptomatique pendant des années tout en endommageant le cœur, les reins et le cerveau. Le diagnostic repose sur mesures répétées et la confirmation par un professionnel de santé. Le traitement inclut des mesures hygiéno-diététiques et souvent des antihypertenseurs adaptés au profil du patient.",
+    "practicalTips":["Mesurez votre PA deux fois par jour et notez les valeurs.","Réduisez la consommation de sel (moins de 5g/jour).","Maintenez un poids santé et pratiquez 30 min d'activité modérée la plupart des jours.","Limitez la consommation d'alcool et arrêtez le tabac.","Suivez la posologie médicamenteuse recommandée et demandez un plan thérapeutique à votre médecin."]
+  },
+  "Diabete": {
+    "overview": "Trouble du métabolisme du glucose caractérisé par une hyperglycémie chronique et complications micro/macrovasculaires.",
+    "typicalSymptoms": ["Polyurie", "Polydipsie", "Perte de poids inexpliquée"],
+    "prevention": ["Activité physique régulière", "Alimentation équilibrée riche en fibres", "Surveillance du poids"],
+    "whenToSeekCare": "Si glycémies capillaires > 13 mmol/L, signes de décompensation (nausées, vomissements, douleur abdominale), ou infections récurrentes.",
+    "firstLineAdvice": "Consulter pour bilan (HbA1c), éducation thérapeutique et plan de prise en charge personnalisé; surveiller pieds et yeux régulièrement.",
+    "fullDescription":"Le diabète de type 2 est une maladie métabolique caractérisée par une hyperglycémie chronique due à une résistance à l'insuline et une insuffisance de sécrétion insulinique. Il est associé à des risques cardiovasculaires et à des complications microvasculaires. La prise en charge inclut la modification du mode de vie, l'éducation thérapeutique et des traitements médicamenteux adaptés.",
+    "practicalTips":["Contrôlez votre glycémie selon les recommandations locales.","Privilégiez les aliments à faible index glycémique et fractionnez les repas si nécessaire.","Pratiquez une activité physique régulière et adaptez l'alimentation en fonction des traitements (insuline).","Planifiez un suivi régulier (ophtalmologie, podologie, cardiologie si nécessaire)."]
+  },
+  "Migraine": {
+    "overview": "Céphalée récurrente souvent unilatérale, pulsatile, aggravée par l'effort, associée à photophobie/phonophobie.",
+    "typicalSymptoms": ["Douleur pulsatile unilatérale", "Nausées", "Sensibilité à la lumière/au son"],
+    "prevention": ["Identifier et éviter les facteurs déclenchants", "Thérapies comportementales et gestion du stress", "Traitement prophylactique si >=4 crises/mois"],
+    "whenToSeekCare": "Céphalée inhabituelle, déficit neurologique, fièvre élevée ou changements rapides du caractère des céphalées nécessitent évaluation urgente.",
+    "firstLineAdvice": "Utiliser un traitement abortif adapté dès les premiers signes; envisager prophylaxie après discussion avec spécialiste si fréquence/importante incapacité.",
+    "fullDescription":"La migraine est une céphalée primaire souvent récurrente, parfois associée à des symptômes neurologiques (aura). La prise en charge repose sur l'identification des facteurs déclenchants, l'usage de traitements abortifs et, pour les formes fréquentes, des traitements prophylactiques et des approches non pharmacologiques.",
+    "practicalTips":["Tenez un carnet de crise pour identifier les déclencheurs (alimentation, sommeil, stress).","Utilisez le traitement abortif prescrit dès les premiers signes pour réduire la durée et la sévérité.","Évitez les facteurs déclenchants identifiés et améliorez l'hygiène du sommeil."]
+  },
+  "Asthme": {
+    "overview": "Maladie inflammatoire chronique des voies aériennes responsables de bronchoconstriction réversible et d'exacerbations.",
+    "typicalSymptoms": ["Sifflements respiratoires", "Dyspnée", "Toux nocturne"],
+    "prevention": ["Éviter les allergènes identifiés", "Vaccination antigrippale annuelle si indiqué", "Adhésion au traitement inhalé"],
+    "whenToSeekCare": "Exacerbation sévère: difficulté à parler, respiration accélérée, cyanose, ou ne répondant pas au traitement inhalé — consulter d'urgence.",
+    "firstLineAdvice": "Vérifier la technique d'inhalation, assurer plan d'action écrit, utiliser bronchodilatateur court terme pour symptômes aigus.",
+    "fullDescription":"L'asthme est une maladie inflammatoire chronique des voies aériennes se traduisant par des épisodes de bronchoconstriction réversibles. Le contrôle repose sur l'utilisation régulière d'anti-inflammatoires inhalés pour les formes persistantes et d'un plan d'action personnalisé pour gérer les exacerbations.",
+    "practicalTips":["Apprenez et vérifiez la bonne technique d'inhalation avec un professionnel de santé.","Gardez un bronchodilatateur de secours à portée de main et suivez votre plan d'action en cas de crise.","Évitez les allergènes identifiés (acariens, pollen, animaux) et aérez régulièrement."]
+  },
+  "InfectionRespiratoire": {
+    "overview": "Infections virales ou bactériennes des voies respiratoires; importance du diagnostic différentiel (grippe, COVID-19, bronchite).",
+    "typicalSymptoms": ["Toux", "Fièvre", "Congestion nasale"],
+    "prevention": ["Hygiène des mains", "Vaccination selon recommandations", "Port du masque en cas d'épidémie"],
+    "whenToSeekCare": "Si dyspnée, douleur thoracique, fièvre élevée persistante ou confusion — consulter sans délai.",
+    "firstLineAdvice": "Repos, hydratation, antipyrétiques au besoin; tests rapides selon protocole local et avis médical pour antibiotiques si suspicion de surinfection bactérienne.",
+    "fullDescription":"Les infections respiratoires peuvent être virales ou bactériennes. La majorité est virale et se gère par des mesures symptomatiques, mais une attention particulière est nécessaire chez les patients à risque de complication (comorbidités, âge avancé).",
+    "practicalTips":["Hydratez-vous et reposez-vous; utilisez des antipyrétiques si nécessaire.","Surveillez la respiration et consultez si essoufflement ou douleur thoracique.","Faites un test rapide si recommandé localement (ex: COVID, grippe) et suivez les conseils d'isolement si positif."]
+  }
+  ,
+  "Impetigo": {
+    "overview": "Infection cutanée bactérienne contagieuse, fréquente chez l'enfant, caractérisée par des lésions croûteuses couleur miel.",
+    "typicalSymptoms": ["Plaques rouges ou vésicules", "Croûtes couleur miel", "Démangeaisons localisées"],
+    "prevention": ["Hygiène des mains régulière", "Ne pas partager serviettes/affaires personnelles", "Nettoyer et couvrir les plaies"],
+    "whenToSeekCare": "Si lésions qui s'étendent rapidement, fièvre persistante, signes de cellulite ou de ganglions enflés — consulter un médecin.",
+    "firstLineAdvice": "Nettoyer délicatement les lésions, appliquer des antiseptiques locaux; consulter pour antibiotiques topiques ou oraux selon l'étendue.",
+    "fullDescription": "L'impétigo est une infection bactérienne superficielle (le plus souvent staphylocoques ou streptocoques) provoquant des vésicules qui s'exsudent et forment des croûtes caractéristiques. Elle est très contagieuse par contact direct ou partage d'objets contaminés.",
+    "practicalTips": ["Lavez les mains fréquemment et changez les pansements tous les jours.", "Évitez le grattage; couvrez les lésions pour limiter la contagion.", "Lavez la literie et les vêtements à haute température si possible.", "Consultez rapidement si propagation ou fièvre; le médecin prescrira parfois des antibiotiques oraux."]
+  },
+  "Malaria": {
+    "overview": "Maladie parasitaire transmise par la piqûre de moustiques infectés (Plasmodium) provoquant fièvre récurrente et complications sévères si non traitée.",
+    "typicalSymptoms": ["Fièvre élevée", "Frissons", "Transpiration et maux de tête", "Nausées"],
+    "prevention": ["Utiliser des moustiquaires imprégnées d'insecticide", "Appliquer des répulsifs topiques", "Éviter les zones à risque au crépuscule"],
+    "whenToSeekCare": "Fièvre après un séjour en zone d'endémie, symptômes fébriles persistants, signes de défaillance d'organe — consulter en urgence.",
+    "firstLineAdvice": "Faire un test diagnostic rapide (antigène) ou frottis sanguin et commencer le traitement antipaludéen prescrit rapidement en cas de résultat positif.",
+    "fullDescription": "Le paludisme est causé par plusieurs espèces de Plasmodium; le diagnostic et le traitement précoces réduisent le risque de formes graves (anémie lourde, atteinte cérébrale). La prévention repose sur la lutte anti-vectorielle et la prophylaxie adaptée lors de voyages.",
+    "practicalTips": ["Cherchez un test rapide en cas de fièvre et antécédent d'exposition.", "Suivez scrupuleusement la durée du traitement prescrit.", "Pour les voyageurs, prenez la chimioprophylaxie recommandée et utilisez des mesures anti-moustiques."]
+  },
+  "Dengue": {
+    "overview": "Infection virale transmise par Aedes, provoquant fièvre, douleurs musculaires et éruptions; risque de dengue sévère (hémorragie, choc).",
+    "typicalSymptoms": ["Fièvre soudaine élevée", "Douleurs musculaires et articulaires intenses", "Éruption cutanée", "Maux de tête retro-orbitaires"],
+    "prevention": ["Éliminer gîtes larvaires (eaux stagnantes)", "Utiliser répulsifs et barrières contre les piqûres", "Porter vêtements couvrants"],
+    "whenToSeekCare": "Signes d'alerte entre le 3e et 7e jour: douleur abdominale sévère, vomissements persistants, saignements, somnolence — consulter d'urgence.",
+    "firstLineAdvice": "Repos, hydratation orale abondante; éviter les anti-inflammatoires non stéroïdiens (risque hémorragique); hospitalisation si signes d'alerte.",
+    "fullDescription": "La dengue peut évoluer en forme sévère chez certains patients; la réanimation précoce et la surveillance du volume sanguin sont essentielles pour prévenir le choc. Le traitement est principalement symptomatique et de support.",
+    "practicalTips": ["Hydratez fréquemment (sirops, solutions de réhydratation) et surveillez les signes d'alerte.", "Ne prenez pas d'aspirine ou d'ibuprofène sans avis médical; préférez le paracétamol.", "Consultez rapidement si apparition de signes hémorragiques ou douleur abdominale importante."]
+  },
+  "Tuberculosis": {
+    "overview": "Infection bactérienne principalement pulmonaire due à Mycobacterium tuberculosis; transmissible par voie aérienne." ,
+    "typicalSymptoms": ["Toux persistante (>2 semaines)", "Perte de poids", "Transpiration nocturne", "Hémoptysie"],
+    "prevention": ["Dépistage et traitement des cas index", "Ventilation des espaces clos", "Vaccination BCG selon recommandations locales"],
+    "whenToSeekCare": "Toux persistante, fièvre prolongée, perte de poids ou crachats sanglants — consulter pour radiographie pulmonaire et examens microbiologiques.",
+    "firstLineAdvice": "Ne pas retarder la consultation; si suspicion, tests diagnostiques (sputum, GeneXpert) et début du traitement antituberculeux sous supervision médicale.",
+    "fullDescription": "La tuberculose reste une cause majeure de morbidité mondiale. Le traitement repose sur une polychimiothérapie prolongée (6 mois ou plus) et un suivi strict pour éviter la résistance. La prévention inclut la recherche active de cas et l'isolement des cas contagieux jusqu'à contrôle microbiologique.",
+    "practicalTips": ["Consultez un centre de santé pour dépistage si toux persistante.", "Respectez l'intégralité du traitement prescrit; ne stoppez jamais sans avis médical.", "Protégez l'entourage: aérez, portez un masque si contagieux jusqu'à négativation."]
+  },
+  "Pneumonia": {
+    "overview": "Infection des poumons pouvant être d'origine virale ou bactérienne; potentiellement grave chez les personnes âgées et immunodéprimées.",
+    "typicalSymptoms": ["Toux productive", "Fièvre élevée", "Douleur thoracique", "Essoufflement"],
+    "prevention": ["Vaccinations (pneumocoque, grippe) selon l'âge et comorbidités", "Hygiène respiratoire", "Éviter le tabagisme"],
+    "whenToSeekCare": "Si essoufflement, douleur thoracique importante, fièvre élevée ou confusion — consulter en urgence.",
+    "firstLineAdvice": "Évaluation médicale rapide (radiographie thorax, hémocultures si nécessaire) et antibiothérapie adaptée pour les formes bactériennes; support (oxygène) si hypoxémie.",
+    "fullDescription": "La pneumonie affecte les alvéoles et altère l'échange gazeux. Le pronostic dépend de l'agent infectieux et des comorbidités. Le traitement rapide réduit la mortalité; la vaccination et l'arrêt du tabac diminuent le risque.",
+    "practicalTips": ["Consultez en présence d'essoufflement ou fièvre persistante.", "Suivez le traitement antibiotique jusqu'à la fin prescrite.", "Reposez-vous, hydratez-vous et surveillez la saturation en oxygène si possible."]
+  },
+  "Jaundice": {
+    "overview": "Signe clinique (ictère) lié à une élévation de la bilirubine; causes multiples incluant hépatites virales, obstruction biliaire, alcoolisme.",
+    "typicalSymptoms": ["Coloration jaune de la peau/yeux", "Urines foncées", "Fatigue", "Douleurs abdominales"],
+    "prevention": ["Vaccination hépatite A/B selon recommandations", "Hygiène alimentaire et eau potable", "Limitation de l'alcool"],
+    "whenToSeekCare": "Ictère nouveau, urine foncée, fièvre, douleurs abdominales intenses ou signes de défaillance hépatique — consulter en urgence.",
+    "firstLineAdvice": "Évaluer la fonction hépatique (bilan biologique) et rechercher la cause; éviter médicaments hépatotoxiques et alcool en attendant le diagnostic.",
+    "fullDescription": "L'ictère (jaunisse) est une manifestation clinique résultant d'une accumulation de bilirubine. Son traitement dépend de la cause sous-jacente (hépatite virale, obstruction, maladie métabolique). Un diagnostic rapide oriente la prise en charge et prévient les complications.",
+    "practicalTips": ["Ne consommez pas d'alcool et évitez les médicaments non prescrits avant bilan.", "Consultez pour des analyses sanguines (bilirubine, transaminases) dès l'apparition de l'ictère.", "Assurez une hydratation et un apport nutritionnel adapté; suivez les recommandations du spécialiste." ]
+  },
+  "Urinary tract infection": {
+    "overview": "Infection bactérienne des voies urinaires, fréquente surtout chez les femmes; se manifeste par brûlures mictionnelles et pollakiurie.",
+    "typicalSymptoms": ["Brûlures en urinant", "Besoin fréquent d'uriner", "Urines troubles ou malodorantes", "Douleur pelvienne"],
+    "prevention": ["Boire suffisamment d'eau", "Mictions après rapports sexuels", "Hygiène intime adaptée"],
+    "whenToSeekCare": "Fièvre, douleur lombaire, vomissements, ou symptômes urinaires persistants nécessitent consultation (risque de pyélonéphrite).",
+    "firstLineAdvice": "Consulter pour analyse d'urine et antibiothérapie ciblée si indiquée; soulager la douleur avec antipyrétiques/antispasmodiques si nécessaire.",
+    "fullDescription": "Les infections urinaires basses sont souvent causées par Escherichia coli. Elles répondent généralement rapidement à un traitement antibiotique approprié; toutefois, les infections hautes (pyélonéphrite) peuvent nécessiter des soins plus intensifs.",
+    "practicalTips": ["Buvez 1,5–2 L d'eau par jour sauf contre-indication.", "Urinez après les rapports sexuels et évitez les produits irritants (douches vaginales parfumées).", "Consultez rapidement si fièvre, frissons ou douleur lombaire pour éviter la progression."]
+  }
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <circle cx="24" cy="24" r="20" fill="#e53935">
+    <animate attributeName="fill-opacity" values="0.8;1;0.8" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <text x="24" y="32" font-size="18" text-anchor="middle" fill="#fff">✖</text>
+</svg>

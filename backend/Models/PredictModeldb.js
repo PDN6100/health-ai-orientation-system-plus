@@ -33,8 +33,8 @@ const PredictSchema = new mongoose.Schema({
         max: 100
     },
     Userid: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        type: mongoose.Schema.Types.Mixed,
+        required: false,
         trim: true
     },
     createdAt: {

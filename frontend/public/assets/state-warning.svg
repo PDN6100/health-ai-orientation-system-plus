@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <polygon points="24,6 44,42 4,42" fill="#ffcc00">
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+  </polygon>
+  <text x="24" y="34" font-size="18" text-anchor="middle" fill="#7f3f98">!</text>
+</svg>

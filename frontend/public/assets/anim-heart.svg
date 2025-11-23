@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <g>
+    <circle cx="60" cy="60" r="26" fill="#ff7675">
+      <animate attributeName="r" values="22;28;22" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="60" y="66" font-size="28" text-anchor="middle" fill="#fff">❤</text>
+  </g>
+</svg>

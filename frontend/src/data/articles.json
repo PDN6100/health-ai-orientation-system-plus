@@ -1,0 +1,38 @@
+[
+  {
+    "id": "a1",
+    "title": "Comprendre l'hypertension artérielle : mécanismes et prise en charge",
+    "summary": "Revue des mécanismes physiopathologiques de l'hypertension, recommandations de dépistage, et stratégies thérapeutiques fondées sur les dernières guidelines internationales.",
+    "author": "Dr. A. Dupont",
+    "date": "2024-01-15",
+    "image": "/assets/premium_photo-1699387204388-120141c76d51.avif",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/hypertension"
+  },
+  {
+    "id": "a2",
+    "title": "Diabète de type 2 : prévention et modification du mode de vie",
+    "summary": "Synthèse des interventions basées sur l'activité physique et la nutrition pour prévenir la progression de la résistance à l'insuline et réduire les complications micro- et macrovasculaires.",
+    "author": "Equipe Endocrinologie",
+    "date": "2023-11-07",
+    "image": "/assets/premium_photo-1699387204388-120141c76d51.avif",
+    "url": "https://www.who.int/health-topics/diabetes"
+  },
+  {
+    "id": "a3",
+    "title": "Prise en charge des migraines : options pharmacologiques et non-pharmacologiques",
+    "summary": "Résumé des traitements de fond et des thérapeutiques abortives, rôle des techniques non médicamenteuses (physiothérapie, biofeedback, hygiène du sommeil).",
+    "author": "Service de Neurologie",
+    "date": "2023-08-20",
+    "image": "/assets/premium_photo-1699387204388-120141c76d51.avif",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK558933/"
+  },
+  {
+    "id": "a4",
+    "title": "Asthme : repères pratiques pour le suivi en soins primaires",
+    "summary": "Guide concis pour l'évaluation du contrôle de l'asthme, optimisation inhalatoire, et critères d'orientation vers un spécialiste respiratoire.",
+    "author": "RespiCare",
+    "date": "2022-12-05",
+    "image": "/assets/premium_photo-1699387204388-120141c76d51.avif",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC"
+  }
+]
