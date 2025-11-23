@@ -59,4 +59,47 @@ let getHistory = async (req,res)=>{
         res.status(500).send("Internal Server Error");
     }
 }    
-module.exports={getSymptomes, getHistory};
+
+let deleteHistory = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const doc = await predict.findById(id);
+        if (!doc) return res.status(404).json({ success: false, message: 'Not found' });
+        await predict.findByIdAndDelete(id);
+        res.json({ success: true, message: 'Deleted' });
+    } catch (err) {
+        console.error('Erreur deleteHistory', err);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+}
+
+let exportHistory = async (req, res) => {
+    try {
+        const userId = req.query.userId;
+        const rows = await predict.find({ Userid: userId }).lean();
+        // Build CSV header
+        const header = ['_id','disease','description','Symptomes','Confidence','Userid','createdAt'];
+        const csv = [header.join(',')];
+        rows.forEach(r => {
+            const line = [
+                `"${r._id}"`,
+                `"${(r.disease || '').toString().replace(/"/g,'""')}"`,
+                `"${(r.description || '').toString().replace(/"/g,'""')}"`,
+                `"${(Array.isArray(r.Symptomes) ? r.Symptomes.join(';') : (r.Symptomes||'')).toString().replace(/"/g,'""')}"`,
+                `"${r.Confidence || ''}"`,
+                `"${r.Userid || ''}"`,
+                `"${r.createdAt || ''}"`,
+            ];
+            csv.push(line.join(','));
+        });
+
+        const csvContent = csv.join('\n');
+        res.setHeader('Content-disposition', `attachment; filename=history_${userId || 'export'}.csv`);
+        res.set('Content-Type', 'text/csv');
+        res.status(200).send(csvContent);
+    } catch (err) {
+        console.error('Erreur exportHistory', err);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+}
+module.exports={getSymptomes, getHistory, deleteHistory, exportHistory};

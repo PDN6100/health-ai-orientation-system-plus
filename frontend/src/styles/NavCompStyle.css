@@ -1,20 +1,20 @@
 @media (min-width: 599px) {
-
-    nav ul.MuiList-root > li:last-child {
-        margin-top: 63vh !important;
-    }
+  nav ul.MuiList-root > li:last-child {
+    margin-top: 63vh !important;
+  }
 }
 @media (min-width: 1200px) {
-    .css-8dyk8f-MuiContainer-root {
-        max-width: 2600px !important;
-    }
+  .css-8dyk8f-MuiContainer-root {
+    max-width: 2600px !important;
+  }
 }
-.css-8dyk8f-MuiContainer-root{
-    margin: 0 !important;
+.css-8dyk8f-MuiContainer-root {
+  margin: 0 !important;
 }
-.css-8dyk8f-MuiContainer-root{
-    background-color: rgba(225, 238, 236, 0.603);
+.css-8dyk8f-MuiContainer-root {
+  background-color: rgba(225, 238, 236, 0.603);
 }
-.css-f84ov1-MuiTypography-root,.css-ijwub5-MuiTypography-root{
-    display: none;
+.css-f84ov1-MuiTypography-root,
+.css-ijwub5-MuiTypography-root {
+  display: none;
 }

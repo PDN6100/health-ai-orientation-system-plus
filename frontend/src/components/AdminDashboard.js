@@ -1,18 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
-  Box, Typography, Button, IconButton, Modal, TextField, Table, TableBody, TableCell, TableContainer,
-  TableHead, TableRow, Paper, AppBar, Toolbar, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText,
-  CircularProgress, Alert
+  Box,
+  Typography,
+  Button,
+  IconButton,
+  Modal,
+  TextField,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  AppBar,
+  Toolbar,
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  CircularProgress,
+  Alert,
 } from '@mui/material';
 import { Add, Edit, Delete, Dashboard, People, BarChart, Logout } from '@mui/icons-material';
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer, BarChart as BarChartGraph, Bar, XAxis, YAxis } from 'recharts';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  BarChart as BarChartGraph,
+  Bar,
+  XAxis,
+  YAxis,
+} from 'recharts';
 
 const COLORS = ['#1976d2', '#e91e63', '#00C49F', '#FFBB28', '#FF8042', '#A020F0', '#FF6384'];
 
 const styleModal = {
-  position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-  width: 400, bgcolor: 'background.paper', borderRadius: 2, boxShadow: 24, p: 4,
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  borderRadius: 2,
+  boxShadow: 24,
+  p: 4,
 };
 
 const AdminDashboard = () => {
@@ -34,13 +72,13 @@ const AdminDashboard = () => {
     setLoading(true);
     setError(null);
     try {
-      const usersRes = await axios.get("http://localhost:8080/admin/users");
-      const predictionsRes = await axios.get("http://localhost:8080/admin/predictions");
+      const usersRes = await axios.get('http://localhost:8080/admin/users');
+      const predictionsRes = await axios.get('http://localhost:8080/admin/predictions');
       setUsers(usersRes.data);
       setPredictions(predictionsRes.data);
     } catch (err) {
-      console.error("Erreur lors du chargement des données :", err);
-      setError("Erreur lors du chargement des données.");
+      console.error('Erreur lors du chargement des données :', err);
+      setError('Erreur lors du chargement des données.');
     }
     setLoading(false);
   };
@@ -48,7 +86,11 @@ const AdminDashboard = () => {
   // CRUD Operations
   const handleOpenModal = (user = null) => {
     setEditUser(user);
-    setForm(user ? { name: user.name, email: user.email, role: user.role } : { name: '', email: '', role: 'user' });
+    setForm(
+      user
+        ? { name: user.name, email: user.email, role: user.role }
+        : { name: '', email: '', role: 'user' }
+    );
     setOpenModal(true);
   };
 
@@ -63,35 +105,35 @@ const AdminDashboard = () => {
   const handleSaveUser = async () => {
     try {
       if (!form.name || !form.email || !form.role) {
-        alert("Tous les champs sont obligatoires !");
+        alert('Tous les champs sont obligatoires !');
         return;
       }
       if (editUser) {
         // Modifier un utilisateur
         await axios.put(`http://localhost:8080/admin/users/${editUser._id}`, form);
-        alert("Utilisateur modifié avec succès !");
+        alert('Utilisateur modifié avec succès !');
       } else {
         // Ajouter un utilisateur
-        await axios.post("http://localhost:8080/admin/users", form);
-        alert("Utilisateur ajouté avec succès !");
+        await axios.post('http://localhost:8080/admin/users', form);
+        alert('Utilisateur ajouté avec succès !');
       }
       fetchAdminData();
       handleCloseModal();
     } catch (err) {
-      console.error("Erreur lors de la sauvegarde :", err);
-      alert("Erreur lors de la sauvegarde !");
+      console.error('Erreur lors de la sauvegarde :', err);
+      alert('Erreur lors de la sauvegarde !');
     }
   };
 
   const handleDeleteUser = async (id) => {
-    if (window.confirm("Voulez-vous vraiment supprimer cet utilisateur ?")) {
+    if (window.confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {
       try {
         await axios.delete(`http://localhost:8080/admin/users/${id}`);
-        alert("Utilisateur supprimé avec succès !");
+        alert('Utilisateur supprimé avec succès !');
         fetchAdminData();
       } catch (err) {
-        console.error("Erreur lors de la suppression :", err);
-        alert("Erreur lors de la suppression !");
+        console.error('Erreur lors de la suppression :', err);
+        alert('Erreur lors de la suppression !');
       }
     }
   };
@@ -119,13 +161,13 @@ const AdminDashboard = () => {
   }, {});
   const roleData = Object.entries(userRoles).map(([role, count]) => ({
     name: role,
-    value: count
+    value: count,
   }));
 
   // Déconnexion
   const handleLogout = () => {
     localStorage.clear();
-    window.location.href = "/login"; // Redirige vers la page de connexion
+    window.location.href = '/login'; // Redirige vers la page de connexion
   };
 
   // Afficher les prédictions d'un utilisateur
@@ -139,7 +181,7 @@ const AdminDashboard = () => {
     });
 
     if (userPredictions.length === 0) {
-      alert("Aucune prédiction trouvée pour cet utilisateur.");
+      alert('Aucune prédiction trouvée pour cet utilisateur.');
       return;
     }
 
@@ -166,20 +208,28 @@ const AdminDashboard = () => {
         <Toolbar />
         <List>
           <ListItem button={true} onClick={() => setActiveView('dashboard')}>
-            <ListItemIcon sx={{ color: '#fff' }}><Dashboard /></ListItemIcon>
+            <ListItemIcon sx={{ color: '#fff' }}>
+              <Dashboard />
+            </ListItemIcon>
             <ListItemText primary="Tableau de bord" />
           </ListItem>
           <ListItem button={true} onClick={() => setActiveView('users')}>
-            <ListItemIcon sx={{ color: '#fff' }}><People /></ListItemIcon>
+            <ListItemIcon sx={{ color: '#fff' }}>
+              <People />
+            </ListItemIcon>
             <ListItemText primary="Utilisateurs" />
           </ListItem>
           <ListItem button={true} onClick={() => setActiveView('stats')}>
-            <ListItemIcon sx={{ color: '#fff' }}><BarChart /></ListItemIcon>
+            <ListItemIcon sx={{ color: '#fff' }}>
+              <BarChart />
+            </ListItemIcon>
             <ListItemText primary="Statistiques" />
           </ListItem>
           <Divider sx={{ bgcolor: '#fff' }} />
           <ListItem button={true} onClick={handleLogout}>
-            <ListItemIcon sx={{ color: '#fff' }}><Logout /></ListItemIcon>
+            <ListItemIcon sx={{ color: '#fff' }}>
+              <Logout />
+            </ListItemIcon>
             <ListItemText primary="Déconnexion" />
           </ListItem>
         </List>
@@ -196,7 +246,9 @@ const AdminDashboard = () => {
         </AppBar>
 
         {loading ? (
-          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
+          <Box
+            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}
+          >
             <CircularProgress />
           </Box>
         ) : error ? (
@@ -211,7 +263,9 @@ const AdminDashboard = () => {
                 <Box sx={{ display: 'flex', gap: 4, flexWrap: 'wrap', justifyContent: 'center' }}>
                   {/* Graphique des maladies */}
                   <Paper elevation={3} sx={{ p: 3, borderRadius: 3, minWidth: 350, maxWidth: 400 }}>
-                    <Typography variant="h6" sx={{ color: "#4caf50", mb: 2 }}>Statistiques maladies</Typography>
+                    <Typography variant="h6" sx={{ color: '#4caf50', mb: 2 }}>
+                      Statistiques maladies
+                    </Typography>
                     {chartData.length > 0 ? (
                       <ResponsiveContainer width="100%" height={220}>
                         <PieChart>
@@ -233,13 +287,17 @@ const AdminDashboard = () => {
                         </PieChart>
                       </ResponsiveContainer>
                     ) : (
-                      <Typography color="#4caf50">Pas assez de données pour le graphique.</Typography>
+                      <Typography color="#4caf50">
+                        Pas assez de données pour le graphique.
+                      </Typography>
                     )}
                   </Paper>
 
                   {/* Graphique des rôles */}
                   <Paper elevation={3} sx={{ p: 3, borderRadius: 3, minWidth: 350, maxWidth: 400 }}>
-                    <Typography variant="h6" sx={{ color: "#1976d2", mb: 2 }}>Répartition des rôles</Typography>
+                    <Typography variant="h6" sx={{ color: '#1976d2', mb: 2 }}>
+                      Répartition des rôles
+                    </Typography>
                     {roleData.length > 0 ? (
                       <ResponsiveContainer width="100%" height={220}>
                         <BarChartGraph data={roleData}>
@@ -250,7 +308,9 @@ const AdminDashboard = () => {
                         </BarChartGraph>
                       </ResponsiveContainer>
                     ) : (
-                      <Typography color="#1976d2">Pas assez de données pour le graphique.</Typography>
+                      <Typography color="#1976d2">
+                        Pas assez de données pour le graphique.
+                      </Typography>
                     )}
                   </Paper>
                 </Box>
@@ -258,14 +318,26 @@ const AdminDashboard = () => {
             )}
 
             {activeView === 'users' && (
-              <Paper elevation={3} sx={{ p: 3, borderRadius: 3, minWidth: 350, maxWidth: 500, margin: '0 auto' }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-                  <Typography variant="h5" sx={{ color: "#1976d2" }}>Utilisateurs</Typography>
+              <Paper
+                elevation={3}
+                sx={{ p: 3, borderRadius: 3, minWidth: 350, maxWidth: 500, margin: '0 auto' }}
+              >
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    mb: 2,
+                  }}
+                >
+                  <Typography variant="h5" sx={{ color: '#1976d2' }}>
+                    Utilisateurs
+                  </Typography>
                   <Button
                     variant="contained"
                     startIcon={<Add />}
                     onClick={() => handleOpenModal()}
-                    sx={{ bgcolor: "#1976d2" }}
+                    sx={{ bgcolor: '#1976d2' }}
                   >
                     Ajouter
                   </Button>
@@ -287,16 +359,10 @@ const AdminDashboard = () => {
                           <TableCell>{user.email}</TableCell>
                           <TableCell>{user.role}</TableCell>
                           <TableCell align="right">
-                            <IconButton
-                              color="primary"
-                              onClick={() => handleOpenModal(user)}
-                            >
+                            <IconButton color="primary" onClick={() => handleOpenModal(user)}>
                               <Edit />
                             </IconButton>
-                            <IconButton
-                              color="error"
-                              onClick={() => handleDeleteUser(user._id)}
-                            >
+                            <IconButton color="error" onClick={() => handleDeleteUser(user._id)}>
                               <Delete />
                             </IconButton>
                           </TableCell>
@@ -306,7 +372,7 @@ const AdminDashboard = () => {
                   </Table>
                 </TableContainer>
                 <Typography sx={{ mt: 2, fontWeight: 600 }}>
-                  Total : <span style={{ color: "#1976d2" }}>{users.length}</span>
+                  Total : <span style={{ color: '#1976d2' }}>{users.length}</span>
                 </Typography>
               </Paper>
             )}
@@ -346,13 +412,17 @@ const AdminDashboard = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 4, flexWrap: 'wrap', justifyContent: 'center' }}>
                   <Paper elevation={3} sx={{ p: 3, borderRadius: 3, minWidth: 350, maxWidth: 400 }}>
-                    <Typography variant="h6" sx={{ color: "#4caf50", mb: 2 }}>Nombre total de prédictions</Typography>
+                    <Typography variant="h6" sx={{ color: '#4caf50', mb: 2 }}>
+                      Nombre total de prédictions
+                    </Typography>
                     <Typography variant="h4" sx={{ textAlign: 'center', color: '#4caf50' }}>
                       {predictions.length}
                     </Typography>
                   </Paper>
                   <Paper elevation={3} sx={{ p: 3, borderRadius: 3, minWidth: 350, maxWidth: 400 }}>
-                    <Typography variant="h6" sx={{ color: "#1976d2", mb: 2 }}>Nombre total d'utilisateurs</Typography>
+                    <Typography variant="h6" sx={{ color: '#1976d2', mb: 2 }}>
+                      Nombre total d'utilisateurs
+                    </Typography>
                     <Typography variant="h4" sx={{ textAlign: 'center', color: '#1976d2' }}>
                       {users.length}
                     </Typography>
@@ -366,7 +436,9 @@ const AdminDashboard = () => {
         {/* Modal CRUD Utilisateur */}
         <Modal open={openModal} onClose={handleCloseModal}>
           <Box sx={styleModal}>
-            <Typography variant="h6" sx={{ mb: 2 }}>{editUser ? "Modifier" : "Ajouter"} un utilisateur</Typography>
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              {editUser ? 'Modifier' : 'Ajouter'} un utilisateur
+            </Typography>
             <TextField
               fullWidth
               label="Nom"
@@ -392,12 +464,8 @@ const AdminDashboard = () => {
               sx={{ mb: 2 }}
             />
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
-              <Button
-                variant="contained"
-                onClick={handleSaveUser}
-                sx={{ bgcolor: "#1976d2" }}
-              >
-                {editUser ? "Enregistrer" : "Ajouter"}
+              <Button variant="contained" onClick={handleSaveUser} sx={{ bgcolor: '#1976d2' }}>
+                {editUser ? 'Enregistrer' : 'Ajouter'}
               </Button>
               <Button variant="outlined" onClick={handleCloseModal}>
                 Annuler

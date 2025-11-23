@@ -46,12 +46,14 @@ mongoose.connect(process.env.MONGODB_URI)
     // Import des routes
     const AuthRouter = require("./Routes/AuthRouter");
     const predictrouter = require("./Routes/predictRoute");
+    const contactRouter = require("./Routes/contact");
     const adminRoutes = require("./Routes/admin");
 
     // Routes API
     app.use("/auth", AuthRouter);            // Authentification
     app.use("/api/predict", predictrouter);  // Prédiction
     app.use("/api/history", predictrouter);  // Historique
+    app.use('/api/contact', contactRouter); // Contact form
     app.use("/admin", adminRoutes);          // Admin
 
   })

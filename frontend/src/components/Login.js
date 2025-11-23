@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import '../styles/Login.css';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from './utils';
 
@@ -17,12 +17,12 @@ function Login() {
     e.preventDefault();
     const { email, password } = loginInfo;
     if (!email || !password) return handleError('Email and password are required');
-    
+
     try {
-      const response = await fetch("http://localhost:8080/auth/login", {
-        method: "POST",
+      const response = await fetch('http://localhost:8080/auth/login', {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(loginInfo)
+        body: JSON.stringify(loginInfo),
       });
       const result = await response.json();
       const { success, message, jwtToken, name, error, userId, role } = result;
@@ -52,7 +52,7 @@ function Login() {
     <div className="login-modern-bg">
       <div className="login-modern-container">
         {/* Partie image/animation à gauche */}
-                <div className="login-modern-visual">
+        <div className="login-modern-visual">
           <img
             src="https://images.pexels.com/photos/1181353/pexels-photo-1181353.jpeg?auto=compress&w=600"
             alt="African man using computer"
@@ -65,7 +65,9 @@ function Login() {
               </circle>
             </svg>
             <p className="login-modern-quote">
-              “La santé, c’est la première richesse.”<br /><span>- Ralph Waldo Emerson</span>
+              “La santé, c’est la première richesse.”
+              <br />
+              <span>- Ralph Waldo Emerson</span>
             </p>
           </div>
         </div>
@@ -92,14 +94,21 @@ function Login() {
                 onChange={handleChange}
                 autoComplete="current-password"
               />
-              <button type="submit" className="login-btn">Se connecter</button>
+              <button type="submit" className="login-btn">
+                Se connecter
+              </button>
               <p className="signup-text">
                 Pas de compte ? <Link to="/signup">Créer un compte</Link>
               </p>
             </form>
-            <div className="or-divider"><span>OU</span></div>
+            <div className="or-divider">
+              <span>OU</span>
+            </div>
             <a href="http://localhost:8080/auth/google" className="google-login-button">
-              <img src="https://www.gstatic.com/images/branding/product/1x/gsa_64dp.png" alt="Google Logo" />
+              <img
+                src="https://www.gstatic.com/images/branding/product/1x/gsa_64dp.png"
+                alt="Google Logo"
+              />
               <span>Connexion avec Google</span>
             </a>
             <ToastContainer />

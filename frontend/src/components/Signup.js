@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import '../styles/Signup.css'; 
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import '../styles/Signup.css';
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from './utils';
 
@@ -8,7 +8,7 @@ function Signup() {
   const [signupInfo, setSignupInfo] = useState({
     name: '',
     email: '',
-    password: ''
+    password: '',
   });
   const navigate = useNavigate();
 
@@ -24,11 +24,11 @@ function Signup() {
       return handleError('Nom, email et mot de passe requis');
     }
     try {
-      const url = "http://localhost:8080/auth/signup";
+      const url = 'http://localhost:8080/auth/signup';
       const response = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(signupInfo)
+        body: JSON.stringify(signupInfo),
       });
       const result = await response.json();
       const { success, message, error } = result;
@@ -65,7 +65,9 @@ function Signup() {
               </circle>
             </svg>
             <p className="signup-modern-quote">
-              “Inscrivez-vous et prenez soin de votre santé.”<br /><span>- HealthyAI</span>
+              “Inscrivez-vous et prenez soin de votre santé.”
+              <br />
+              <span>- HealthyAI</span>
             </p>
           </div>
         </div>
@@ -77,27 +79,29 @@ function Signup() {
             <form onSubmit={handleSignup}>
               <input
                 onChange={handleChange}
-                type='text'
-                name='name'
+                type="text"
+                name="name"
                 autoFocus
-                placeholder='Votre nom'
+                placeholder="Votre nom"
                 value={signupInfo.name}
               />
               <input
                 onChange={handleChange}
-                type='email'
-                name='email'
-                placeholder='Votre email'
+                type="email"
+                name="email"
+                placeholder="Votre email"
                 value={signupInfo.email}
               />
               <input
                 onChange={handleChange}
-                type='password'
-                name='password'
-                placeholder='Votre mot de passe'
+                type="password"
+                name="password"
+                placeholder="Votre mot de passe"
                 value={signupInfo.password}
               />
-              <button type='submit' className="signup-btn">S’inscrire</button>
+              <button type="submit" className="signup-btn">
+                S’inscrire
+              </button>
               <p className="login-text">
                 Déjà inscrit ? <Link to="/login">Se connecter</Link>
               </p>

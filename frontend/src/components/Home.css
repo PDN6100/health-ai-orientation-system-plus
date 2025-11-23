@@ -4,7 +4,9 @@
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s, transform 0.8s;
+  transition:
+    opacity 0.8s,
+    transform 0.8s;
 }
 .fade-in.visible {
   opacity: 1;
@@ -81,15 +83,23 @@
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0,184,217,0.12);
-  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(0, 184, 217, 0.12);
+  transition:
+    background 0.3s,
+    transform 0.2s;
   margin-top: 10px;
   animation: pulse 1.8s infinite;
 }
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 #5e8cff55; }
-  70% { box-shadow: 0 0 0 12px #5e8cff00; }
-  100% { box-shadow: 0 0 0 0 #5e8cff00; }
+  0% {
+    box-shadow: 0 0 0 0 #5e8cff55;
+  }
+  70% {
+    box-shadow: 0 0 0 12px #5e8cff00;
+  }
+  100% {
+    box-shadow: 0 0 0 0 #5e8cff00;
+  }
 }
 .hero-cta:hover {
   background: linear-gradient(90deg, #27ae60 0%, #00b8d9 100%);
@@ -108,7 +118,7 @@
 .stat-card {
   background: #fff;
   border-radius: 18px;
-  box-shadow: 0 4px 18px rgba(0,184,217,0.07);
+  box-shadow: 0 4px 18px rgba(0, 184, 217, 0.07);
   padding: 22px 28px;
   text-align: center;
   min-width: 140px;
@@ -157,7 +167,7 @@
 .value-card {
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 18px rgba(0,184,217,0.07);
+  box-shadow: 0 4px 18px rgba(0, 184, 217, 0.07);
   padding: 28px 18px;
   width: 210px;
   text-align: center;
@@ -202,7 +212,7 @@
 .service-card {
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 18px rgba(39,174,96,0.07);
+  box-shadow: 0 4px 18px rgba(39, 174, 96, 0.07);
   padding: 28px 18px;
   width: 210px;
   text-align: center;
@@ -290,7 +300,7 @@
 .prevention-modern li {
   background: #fff;
   border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(39,174,96,0.07);
+  box-shadow: 0 2px 12px rgba(39, 174, 96, 0.07);
   padding: 12px 20px;
   font-size: 1rem;
   color: #27ae60;
@@ -324,7 +334,7 @@
 .testimonial-modern {
   background: #fff;
   border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(0,184,217,0.07);
+  box-shadow: 0 2px 12px rgba(0, 184, 217, 0.07);
   padding: 24px 18px;
   max-width: 320px;
   font-size: 1rem;
@@ -362,7 +372,7 @@
 .partner-card {
   background: #fff;
   border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(0,184,217,0.07);
+  box-shadow: 0 2px 12px rgba(0, 184, 217, 0.07);
   padding: 18px 12px;
   min-width: 120px;
   display: flex;
@@ -440,7 +450,7 @@
 .news-card {
   background: #fff;
   border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(0,184,217,0.07);
+  box-shadow: 0 2px 12px rgba(0, 184, 217, 0.07);
   padding: 24px 18px;
   max-width: 320px;
   font-size: 1rem;
@@ -484,7 +494,7 @@
 }
 .video-wrapper iframe {
   border-radius: 18px;
-  box-shadow: 0 4px 18px rgba(0,184,217,0.12);
+  box-shadow: 0 4px 18px rgba(0, 184, 217, 0.12);
   max-width: 100%;
 }
 
@@ -509,7 +519,7 @@
 .number-card {
   background: #fff;
   border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(39,174,96,0.07);
+  box-shadow: 0 2px 12px rgba(39, 174, 96, 0.07);
   padding: 28px 22px;
   min-width: 160px;
   text-align: center;
@@ -561,8 +571,10 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0,184,217,0.12);
-  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(0, 184, 217, 0.12);
+  transition:
+    background 0.3s,
+    transform 0.2s;
   margin-top: 10px;
 }
 .app-btn:hover {
@@ -589,7 +601,7 @@
   gap: 12px;
   margin-bottom: 12px;
 }
-.newsletter-form input[type="email"] {
+.newsletter-form input[type='email'] {
   padding: 10px 18px;
   border-radius: 22px;
   border: 1px solid #e3f0ff;
@@ -597,7 +609,7 @@
   outline: none;
   transition: border 0.2s;
 }
-.newsletter-form input[type="email"]:focus {
+.newsletter-form input[type='email']:focus {
   border: 1.5px solid #00b8d9;
 }
 .newsletter-form button {
@@ -609,8 +621,10 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0,184,217,0.12);
-  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(0, 184, 217, 0.12);
+  transition:
+    background 0.3s,
+    transform 0.2s;
 }
 .newsletter-form button:hover {
   background: linear-gradient(90deg, #27ae60 0%, #00b8d9 100%);
@@ -660,7 +674,15 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-  .features-list, .disease-cards-modern, .testimonials-list, .values-list, .services-list, .partners-list, .news-list, .numbers-list, .app-content {
+  .features-list,
+  .disease-cards-modern,
+  .testimonials-list,
+  .values-list,
+  .services-list,
+  .partners-list,
+  .news-list,
+  .numbers-list,
+  .app-content {
     flex-direction: column;
     align-items: center;
     gap: 22px;

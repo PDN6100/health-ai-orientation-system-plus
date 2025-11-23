@@ -4,12 +4,13 @@ import Login from './Login';
 import Signup from './Signup';
 import LandingPage from './LandingPage';
 import NavComp from './NavComp';
+import AppShell from './AppShell';
 import Home from './Home';
 import AdminDashboard from './AdminDashboard'; // Ajout du composant admin
 
 // Vérifie si un utilisateur est connecté
 const isAuthenticated = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   return !!token; // Retourne true si le token existe, false sinon
 };
 
@@ -30,7 +31,7 @@ const AppRoutes = () => {
         path="/predict"
         element={
           <ProtectedRoute>
-            <NavComp />
+            <AppShell />
           </ProtectedRoute>
         }
       />
