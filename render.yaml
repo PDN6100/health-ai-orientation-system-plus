@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: frontend
+    env: static
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    healthCheckPath: /
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /
+
+  - type: web
+    name: backend
+    env: node
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+  - type: web
+    name: ml_flask
+    env: python
+    dockerfilePath: ./ml_flask/Dockerfile
+    dockerContext: ./ml_flask
+    healthCheckPath: /
+    envVars:
+      - key: FLASK_ENV
+        value: production
