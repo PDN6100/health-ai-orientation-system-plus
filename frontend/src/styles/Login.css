@@ -273,4 +273,10 @@
     max-width: 220px;
     height: 160px;
   }
+
+  /* keep greeting/form content near top on narrow screens */
+  .glass-card {
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
 }

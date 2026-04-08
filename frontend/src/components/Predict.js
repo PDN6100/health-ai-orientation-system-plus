@@ -313,6 +313,9 @@ export default function Predict({ userId: propUserId, userName: propUserName }) 
               getOptionLabel={(option) => option.title}
               value={selectedOptions}
               onChange={handleChange}
+              ListboxProps={{
+                style: { maxHeight: 220, overflow: 'auto' },
+              }}
               renderOption={(props, option, { selected }) => {
                 const { key, ...optionProps } = props;
                 const isDisabled = selectedOptions.length >= 6 && !selected;

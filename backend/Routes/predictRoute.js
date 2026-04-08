@@ -16,7 +16,7 @@ router.get('/export', PredictController.exportHistory);
 router.post('/test', async (req, res) => {
 	try {
 		const symptomes = req.body.symptomes || [];
-		const response = await axios.post('http://127.0.0.1:5000/predict', { symptoms: symptomes }, { headers: { 'Content-Type': 'application/json' } });
+		const response = await axios.post('http://192.168.1.26:5000/predict', { symptoms: symptomes }, { headers: { 'Content-Type': 'application/json' } });
 		return res.json(response.data);
 	} catch (err) {
 		console.error('Error in /api/predict/test forwarding:', err && err.toString ? err.toString() : err);
@@ -27,7 +27,7 @@ router.post('/test', async (req, res) => {
 // Robust forward endpoint: try ML service with retries, fallback to local mock using backend data
 router.post('/forward', async (req, res) => {
 	const symptomes = req.body.symptomes || [];
-	const mlUrl = process.env.ML_SERVICE_URL || 'http://127.0.0.1:5000/predict';
+	const mlUrl = process.env.ML_SERVICE_URL || 'http://192.168.1.26:5000/predict';
 	const retries = 2;
 	const timeout = 3000; // ms
 

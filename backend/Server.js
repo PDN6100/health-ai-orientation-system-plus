@@ -12,7 +12,7 @@ const app = express();
 // Middleware pour traiter les données JSON et gérer les CORS
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'http://localhost:3000',  // URL du frontend
+    origin: ['http://localhost:3000', 'http://192.168.1.26:3000', 'http://192.168.1.26:5000'],  // URL du frontend et accès réseau
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Autoriser toutes les méthodes nécessaires
     allowedHeaders: ['Content-Type', 'Authorization'], // Autoriser les en-têtes nécessaires
 }));
@@ -39,7 +39,7 @@ app.get("/ping", (req, res) => {
 });
 
 // Connexion à la base de données MongoDB
-const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/health_ai';
+const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://192.168.1.26:27017/health_ai';
 
 // Import des routes (pré-enregistrées même si Mongo non disponible)
 const AuthRouter = require("./Routes/AuthRouter");
